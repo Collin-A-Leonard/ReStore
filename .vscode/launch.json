@@ -34,14 +34,9 @@
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Launch Chrome against localhost",
+            "name": "Launch Chrome Against Localhost",
             "url": "http://localhost:3000",
-            "webRoot": "${workspaceFolder}/client",
-            "sourceMapPathOverrides": {
-                "webpack:///./src/*": "${webRoot}/*",
-                "webpack:///*": "*",
-                "/./src/*": "${webRoot}/*"
-            }
+            "webRoot": "${workspaceFolder}/client"
         }
     ]
 }
