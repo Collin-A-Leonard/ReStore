@@ -12,6 +12,8 @@ primary_region = 'iad'
 [env]
   ASPNETCORE_URLS="http://+:8080"
   StripeSettings__PublishableKey="pk_test_51P3dbAEQfpqgy10UiYp2d1MV8rJE6MfVZxXjCbujbwVzQux9o8z4HI1SA67HaEAOo9n6L8Jm2CHKvXy3LHAgMlOs00OBdeXKuT"
+  Cloudinary__CloudName="dyyjckfue"
+  Cloudinary__ApiKey="176856611918664"
 
 [http_service]
   internal_port = 8080
