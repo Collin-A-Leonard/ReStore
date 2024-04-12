@@ -1,4 +1,4 @@
-import { Typography, Button, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, Box, LinearProgress } from "@mui/material";
+import { Typography, Button, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, Box, CircularProgress } from "@mui/material";
 import { Edit, Delete } from "@mui/icons-material";
 import { currencyFormat } from "../../app/util/util";
 import useProducts from "../../app/hooks/useProducts";
@@ -49,30 +49,25 @@ export default function Inventory() {
                 <Button onClick={() => setEditMode(true)} sx={{ m: 2 }} size='large' variant='contained'>Create</Button>
             </Box>
             {!productsLoaded ?
-                <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: 650, minHeight: 554}} aria-label="simple table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell sx={{height: '55px'}}></TableCell>
-                                <TableCell align="left"></TableCell>
-                                <TableCell align="right"></TableCell>
-                                <TableCell align="center"></TableCell>
-                                <TableCell align="center"></TableCell>
-                                <TableCell align="center"></TableCell>
-                                <TableCell align="right"></TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {Array.from({ length: 6 }, (_, index) => (
-                                <TableRow
-                                    key={index}
-                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                >
-                                    <TableCell sx={{minHeight: 50}} align="center" colSpan={7}><LinearProgress /></TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
+                <TableContainer component={Paper} sx={{ position: 'relative', height: 554 }}>
+                    <Table sx={{ minWidth: 650, height: "100%" }} aria-label="simple table">
+                        {/* Table's content */}
                     </Table>
+                    <Box
+                        sx={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            backgroundColor: 'rgba(255,255,255,0.8)', // Optional: Adds an overlay
+                        }}
+                    >
+                        <CircularProgress size={375} color="secondary" />
+                    </Box>
                 </TableContainer>
                 :
                 <TableContainer component={Paper}>
@@ -109,10 +104,10 @@ export default function Inventory() {
                                     <TableCell align="center">{product.quantityInStock}</TableCell>
                                     <TableCell align="right">
                                         <Button onClick={() => handleSelectProduct(product)} startIcon={<Edit />} />
-                                        <LoadingButton 
-                                            loading={loading && target === product.id} 
-                                            startIcon={<Delete />} 
-                                            color='error' 
+                                        <LoadingButton
+                                            loading={loading && target === product.id}
+                                            startIcon={<Delete />}
+                                            color='error'
                                             onClick={() => handleDeleteProduct(product.id)}
                                         />
                                     </TableCell>
